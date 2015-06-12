@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'cloud' => 's3',
+    'cloud'   => 's3',
 
     /*
     |--------------------------------------------------------------------------
@@ -41,14 +41,14 @@ return [
     |
     */
 
-    'disks' => [
+    'disks'   => [
 
-        'local' => [
+        'local'     => [
             'driver' => 'local',
             'root'   => storage_path('app'),
         ],
 
-        'ftp' => [
+        'ftp'       => [
             'driver'   => 'ftp',
             'host'     => 'ftp.example.com',
             'username' => 'your-username',
@@ -62,7 +62,7 @@ return [
             // 'timeout'  => 30,
         ],
 
-        's3' => [
+        's3'        => [
             'driver' => 's3',
             'key'    => 'your-key',
             'secret' => 'your-secret',
