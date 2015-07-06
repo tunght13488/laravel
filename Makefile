@@ -14,6 +14,8 @@ GULP = $(NODE_MODULES_BIN_DIR)/gulp
 COMPOSER = $(ROOT_DIR)/composer.phar
 ARTISAN = $(ROOT_DIR)/artisan
 
+# Public
+
 default: build
 
 build: install-composer composer-install set-file-permission npm-install bower-install gulp-default
@@ -21,7 +23,12 @@ build: install-composer composer-install set-file-permission npm-install bower-i
 seed:
 	@$(PHP) $(ARTISAN) migrate --seed
 
-# INTERNAL
+ide:
+	@$(PHP) $(ARTISAN) ide-helper:generate --memory
+	@$(PHP) $(ARTISAN) ide-helper:meta
+	@$(PHP) $(ARTISAN) ide-helper:models --nowrite
+
+# Internal
 
 install-composer:
 	@if [ ! -f $(COMPOSER) ]; then echo "..downloading Composer"; curl -sS https://getcomposer.org/installer | $(PHP) -- --install-dir=$(ROOT_DIR); fi
@@ -48,4 +55,4 @@ gulp-default:
 	@echo "..running default Gulp task"
 	@$(GULP)
 
-.PHONY: default build seed create-toolsdir install-composer composer-install set-file-permission npm-install bower-install gulp-default
+.PHONY: default build seed ide create-toolsdir install-composer composer-install set-file-permission npm-install bower-install gulp-default
