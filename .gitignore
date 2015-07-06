@@ -3,5 +3,6 @@
 /public/css/
 /vendor/
 /.env
+/.phpstorm.meta.php
 /composer.phar
 /Homestead.yaml
