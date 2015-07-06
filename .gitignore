@@ -1,4 +1,7 @@
-/vendor
-/node_modules
-Homestead.yaml
-.env
+/bower_components/
+/node_modules/
+/public/css/
+/vendor/
+/.env
+/composer.phar
+/Homestead.yaml
