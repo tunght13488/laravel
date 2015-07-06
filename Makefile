@@ -23,7 +23,11 @@ build: install-composer composer-install set-file-permission npm-install bower-i
 seed:
 	@$(PHP) $(ARTISAN) migrate --seed
 
-ide:
+cc:
+	@$(PHP) $(COMPOSER) dump-autoload
+	@$(PHP) $(ARTISAN) clear-compiled
+
+ide: cc
 	@$(PHP) $(ARTISAN) ide-helper:generate --memory
 	@$(PHP) $(ARTISAN) ide-helper:meta
 	@$(PHP) $(ARTISAN) ide-helper:models --nowrite
@@ -55,4 +59,4 @@ gulp-default:
 	@echo "..running default Gulp task"
 	@$(GULP)
 
-.PHONY: default build seed ide create-toolsdir install-composer composer-install set-file-permission npm-install bower-install gulp-default
+.PHONY: default build seed cc ide create-toolsdir install-composer composer-install set-file-permission npm-install bower-install gulp-default
