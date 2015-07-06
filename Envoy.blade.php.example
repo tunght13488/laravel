@@ -1,0 +1,61 @@
+@servers(['vm' => '-p 2222 vagrant@127.0.0.1'])
+
+@macro('cc')
+dump_autoload
+ide_helper
+@endmacro
+
+@macro('ccc')
+dump_autoload
+ide_helper_reset
+@endmacro
+
+@macro('ref')
+migrate_refresh
+seed
+@endmacro
+
+@task('dump_autoload', ['on' => 'vm'])
+cd /vagrant
+php tools/composer.phar dump-autoload
+php artisan clear-compiled
+@endtask
+
+@task('ide_helper', ['on' => 'vm'])
+cd /vagrant
+php artisan ide-helper:generate
+php artisan ide-helper:models --write
+php artisan ide-helper:meta
+@endtask
+
+@task('ide_helper_reset', ['on' => 'vm'])
+cd /vagrant
+php artisan ide-helper:generate
+php artisan ide-helper:models --write --reset
+php artisan ide-helper:meta
+@endtask
+
+@task('migrate', ['on' => 'vm'])
+cd /vagrant
+php artisan migrate
+@endtask
+
+@task('migrate_reset', ['on' => 'vm'])
+cd /vagrant
+php artisan migrate:reset
+@endtask
+
+@task('migrate_refresh', ['on' => 'vm'])
+cd /vagrant
+php artisan migrate:refresh
+@endtask
+
+@task('seed', ['on' => 'vm'])
+cd /vagrant
+php artisan db:seed
+@endtask
+
+@task('gulp', ['on' => 'vm'])
+cd /vagrant
+gulp
+@endtask
