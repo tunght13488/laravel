@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'files'     => [
+    'files' => [
         //
     ],
 
